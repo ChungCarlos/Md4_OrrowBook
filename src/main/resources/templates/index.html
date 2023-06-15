@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List Book</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th>Tên Sách</th>
+        <th>Số lượng sách còn</th>
+        <th>Tác giả</th>
+        <th>Xem Sách</th>
+        <th>Trả Sách</th>
+    </tr>
+    <tr th:each="b : ${listBook}">
+        <td th:text="${b.bookName}"></td>
+        <td th:text="${b.quantity}"></td>
+        <td th:text="${b.author.authorName}"></td>
+        <td> <a th:href="@{/{id}(id=${b.id})}">Chi Tiết</a></td>
+        <td>
+            <form th:action="@{/return/{id}(id=${b.id})}" method="post">
+                <button type="submit">Trả sách</button>
+            </form>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
